@@ -38,23 +38,23 @@ classdef PS3Controller < handle
                 return
             end
             this.btnstate = hex2dec(btnstr);
-            this.jlx=(lx-512)/512;
-            this.jly=(ly-512)/512;
-            this.jrx=(rx-512)/512;
-            this.jry=(ry-512)/512;
-            thresh=0.1;
-            if(abs(this.jlx)<thresh)
-                this.jlx=0;
-            end
-            if(abs(this.jly)<thresh)
-                this.jly=0;
-            end
-            if(abs(this.jrx)<thresh)
-                this.jrx=0;
-            end
-            if(abs(this.jry)<thresh)
-                this.jry=0;
-            end
+            this.jlx=lx; %(lx-512)/512;
+            this.jly=ly; %(ly-512)/512;
+            this.jrx=rx; %(rx-512)/512;
+            this.jry=ry; %(ry-512)/512;
+            %thresh=0.1;
+            %if(abs(this.jlx)<thresh)
+            %    this.jlx=0;
+            %end
+            %if(abs(this.jly)<thresh)
+            %    this.jly=0;
+            %end
+            %if(abs(this.jrx)<thresh)
+            %    this.jrx=0;
+            %end
+            %if(abs(this.jry)<thresh)
+            %    this.jry=0;
+            %end
         end
         
         function [result]=isPressed(this,btn)

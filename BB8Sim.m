@@ -17,8 +17,8 @@ grid on
 htitle = title(world,'Low Budget USNA Virtual BB-8');
 
 % instantiate joystick, bb8,
-gamepad = KeyboardEmulator(fig); 
-% gamepad = PS3Controller('COM9'); % uncomment to use joystick
+%gamepad = KeyboardEmulator(fig); 
+gamepad = PS3Controller('COM7'); % uncomment to use joystick
 bb8 = BB8(gamepad,world.UserData.dt); % bb8 mechanics simulation
 bb8graphic = BB8Graphic(world,bb8);  % bb8 graphics driven by sim
 
