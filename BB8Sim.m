@@ -1,5 +1,12 @@
 % BB8Sim.m
 % D Evangelista, 2018
+% This code does a low budget simulation of BB-8 from Star Wars. 
+% The dynamics / physics are contained in a BB8 object; rendering
+% is accomplished with a separate BB8Graphic object. This code
+% is meant to illustrate (1) use of classes; (2) separating the
+% physics and graphics; (3) use of homogeneous transforms; (4) 
+% equations of motion and Jacobian for a simple two wheel robot;
+% and (5) how to use textures mapped onto a mesh for 3D graphics. 
 
 close all
 
@@ -24,10 +31,16 @@ bb8graphic = BB8Graphic(world,bb8);  % bb8 graphics driven by sim
 
 % main game loop here
 while(1)
-    gamepad.update();
-    bb8.update();
-    bb8graphic.update(); 
+    % looks simpler when you use abstractions; no monster main!
+    gamepad.update(); % update the controls
     
-    pause(world.UserData.dt);
+    bb8.update(); % update the bb8 physics model
+    bb8graphic.update(); % update the graphics
+    
+    pause(world.UserData.dt); % this controls loop execution time
 end
+
+% TODO
+% make camera move to point at BB-8 (independent of physics)
+% add hemisphere top to BB-8 model (independent of physics)
 
