@@ -30,7 +30,7 @@ classdef BB8 < handle
             
             self.D = 0.506; % diameter in meters
             self.dt = dt; 
-            self.max_speed = 20.0; 
+            self.max_speed = 10.0; 
         end % BB8(joystick) constructor
         
         function update(self)
@@ -49,12 +49,12 @@ classdef BB8 < handle
             dxdt = zeros(size(self.x)); 
             
             % vx and vy from Jacobian * v wheels in body fixed frame... 
-            dxdt(1) = cos(th)*self.u(1)*self.D/2*2; % not sure why 2 needed here
-            dxdt(2) = sin(th)*self.u(1)*self.D/2*2;
+            dxdt(1) = self.max_speed*cos(th)*self.u(1)*self.D/2*2; % not sure why 2 needed here
+            dxdt(2) = self.max_speed*sin(th)*self.u(1)*self.D/2*2;
             
             dxdt(3) = -self.max_speed*self.u(2); % heading change is right stick steering 
             dxdt(4) = self.max_speed*self.u(1)*(1-abs(self.u(2)));  % rolling about y is left stick throttle
-            
+            disp(dxdt)
             % update x using one step of Forward Euler
             self.x = self.x + dxdt * self.dt;
         end % BB8.update(self)
